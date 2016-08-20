@@ -1,0 +1,19 @@
+{
+  "name": "javascript-tdd-setup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "library.js",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "nyc": "^8.1.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.0.2"
+  },
+  "scripts": {
+    "test": "nyc mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
