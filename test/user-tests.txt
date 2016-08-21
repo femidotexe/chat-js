@@ -1,0 +1,45 @@
+//Tests
+
+console.log('Create a new user without user details -------------------------------------');
+var newUser = new User();
+console.log(newUser.createUser());
+console.log();
+
+console.log('Create a new user with details ---------------------------------------------');
+console.log(newUser.createUser('femipixels', 'password'));
+console.log();
+
+console.log('List users -----------------------------------------------------------------');
+console.log(newUser.users);
+console.log(newUser.users[0].username);
+console.log();
+
+console.log('Search user ----------------------------------------------------------------');
+console.log(newUser.searchUser(''));
+console.log(newUser.searchUser('!femipixels'));
+console.log(newUser.searchUser('femipixels'));
+console.log();
+
+console.log('Auth user ------------------------------------------------------------------');
+console.log(newUser.authUser());
+console.log(newUser.authUser('femipixels'));
+console.log(newUser.authUser('password'));
+console.log(newUser.authUser('femipixels','password'));
+console.log();
+
+console.log('User Exists ----------------------------------------------------------------');
+console.log(newUser.userExists());
+console.log(newUser.userExists('!femipixels'));
+console.log(newUser.userExists('femipixels'));
+console.log();
+
+console.log('User Details not created ---------------------------------------------------');
+var notDetails = new UserDetails();
+console.log(notDetails);
+console.log();
+
+console.log('User Details created -------------------------------------------------------');
+var newDetails = new UserDetails('user', '1234');
+console.log(newDetails.username);
+console.log(newDetails.password);
+console.log(newDetails.userid);
