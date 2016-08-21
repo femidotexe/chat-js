@@ -108,6 +108,24 @@ var Chat = function() {
             return 'Message does not exist';
         }
     };
+
+    this.deleteAGroupMessage = function(id) {
+        var msgindex = this.getAMessageIndex('groupchat', id);
+        if(isNaN(msgindex)) {
+            return msgindex;
+        }else {
+            this.groupChats.splice(msgindex, 1);
+        }
+    }
+
+    this.deleteAPrivate = function(id) {
+        var msgindex = this.getAMessageIndex('privatechat', id);
+        if(isNaN(msgindex)) {
+            return msgindex;
+        }else {
+            this.privateChats.splice(msgindex, 1);
+        }
+    }
 };
 
 var ChatMessage = function(message, from, to) {
@@ -136,26 +154,5 @@ var GroupChat = function(message, from){
 };
 
 
-
-var gmsg = new ChatMessage('I\'m posting on the group', 1);
-var gmsg2 = new ChatMessage('Another post', 1);
-var chatapp = new Chat();
-chatapp.postAMessage(gmsg);
-chatapp.postAMessage(gmsg2);
-console.log(chatapp.getGroupChats());
-chatapp.editGroupMessage(2, 'An edited post from the same person');
-console.log(chatapp.getGroupChats());
-chatapp.postAMessage(new ChatMessage('I am learning javascript', 2));
-console.log(chatapp.getGroupChats());
-console.log('editing a message with id that does not exist = ', chatapp.editGroupMessage(4, 'this should not work'));
-privatemsg = new ChatMessage('This is a private message', 1, 2);
-pmsg = new ChatMessage('It wont allow me to message myself', 1, 1);
-pmsg2 = new ChatMessage('A reply from 2 to 1', 2, 1);
-console.log(chatapp.postAMessage(privatemsg));
-console.log(chatapp.postAMessage(pmsg));
-pmsg = new ChatMessage('A reply from 2 to 1', 2, 1);
-chatapp.postAMessage(pmsg2);
-console.log(chatapp.getPrivateChats(1, 2));
-console.log(chatapp.getPrivateChats(3, 2));
 
 module.exports = {'chatmessage':ChatMessage, 'chat':Chat, 'privateChat':PrivateChat, 'groupChat':GroupChat};

@@ -190,5 +190,36 @@ describe('Testing the getAGroupMessage function', function() {
         chatApp.postAMessage(newMsg);
         assert.instanceOf(chatApp.getAGroupMessage(1), GroupChat);
     });
-})
+});
 
+describe('Testing the deleteAGroupMessage method', function() {
+    it('should return an invalid id if the wrong id is sent', function() {
+        var chatApp = new ChatApp();
+        assert(chatApp.deleteAGroupMessage(1) === 'Message does not exist');
+    });
+
+    it('if the message was truly deleted the getGroupMessage should return an error', function() {
+        var chatApp = new ChatApp();
+        var newMsg = new ChatMessage('Posting a message', 2);
+        chatApp.postAMessage(newMsg);
+        assert.instanceOf(chatApp.getAGroupMessage(1), GroupChat);
+        chatApp.deleteAGroupMessage(1);
+        assert(chatApp.getAGroupMessage(1) === 'Message does not exist');
+    });
+});
+
+describe('Testing the deleteAPrivate method', function() {
+    it('should return an invalid id if the wrong id is sent', function() {
+        var chatApp = new ChatApp();
+        assert(chatApp.deleteAPrivate(1) === 'Message does not exist');
+    });
+
+    it('if the message was truly deleted the getGroupMessage should return an error', function() {
+        var chatApp = new ChatApp();
+        var newMsg = new ChatMessage('Posting a message', 1, 2);
+        chatApp.postAMessage(newMsg);
+        assert.instanceOf(chatApp.getAPrivateMessage(1), PrivateChat);
+        chatApp.deleteAPrivate(1);
+        assert(chatApp.getAPrivateMessage(1) === 'Message does not exist');
+    });
+});
